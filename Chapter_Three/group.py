@@ -2,6 +2,7 @@
 import pandas as pd
 import numpy as np
 import seaborn as sns
+import scipy.stats as stats
 import matplotlib.pyplot as plt
 
 # Load the data
@@ -64,3 +65,13 @@ print(f"Amount of differences larger than 1.6: {len(largedDifferences)}")
 
 smallDifferences = [diff for diff in allDifferences if abs(diff) >= 0.6]
 print(f"Amount of differences smaller than 0.6: {len(smallDifferences)}")
+
+"""
+Performing Hypothesis Testing
+"""
+# T-test implementation
+print(stats.ttest_ind(sample1['height'], sample2['height']))
+print(stats.ttest_ind(sample1['height'], sample3))
+
+# Mann-Whitney U Test Implementation
+print(stats.mannwhitneyu(sample1['height'], sample2['height']))
