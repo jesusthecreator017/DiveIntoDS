@@ -75,3 +75,34 @@ print(stats.ttest_ind(sample1['height'], sample3))
 
 # Mann-Whitney U Test Implementation
 print(stats.mannwhitneyu(sample1['height'], sample2['height']))
+print()
+
+"""
+Comparing Groups in a Practical Context
+"""
+
+desktop = pd.read_csv("desktop.csv")
+laptop = pd.read_csv("laptop.csv")
+
+print(f"Desktop Peek:\n{desktop.head()}\n")
+print(f"Laptop Peek:\n{laptop.head()}")
+
+# Create the box plot for the Subscriber Spending data
+sns.reset_orig()
+fig1, ax1 = plt.subplots()
+ax1.set_title("Spending by Desktop and Laptop Subscribers")
+ax1.boxplot([desktop['spending'].values, laptop['spending'].values])
+ax1.set_ylabel("Spending ($)")
+plt.xticks([1, 2], ['Desktop Subscribers', 'Laptop Subscribers'])
+plt.show()
+
+# Print out statistics from each data set
+print(f"Desktop's Age Mean: {np.mean(desktop['age'])}")
+print(f"Laptop's Age Mean: {np.mean(laptop['age'])}")
+print(f"Desktops's Age Median: {np.median(desktop['age'])}")
+print(f"Laptop's Age Median: {np.median(laptop['age'])}")
+print(f"Laptop's 25th Percentile: {np.quantile(laptop['spending'], .25)}")
+print(f"Desktop's 75th Percentile: {np.quantile(desktop['spending'], .75)}")
+print(f"Desktop's Standard Deviation: {np.std(desktop['age'])}")
+
+print(f"\nP-Value from T-Test: {stats.ttest_ind(desktop['spending'], laptop['spending'])[1]}")
